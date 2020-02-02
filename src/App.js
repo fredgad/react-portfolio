@@ -1,26 +1,31 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import { Route, Switch } from 'react-router-dom'
+import './App.scss'
+import { Navigation } from './components/navigation/Navigation'
+import { Timer } from './components/Timer/Timer'
+import { Main } from './components/main/Main'
 
-function App() {
+export const App = ({state, dispatch}) => {
+
+  const { field: { fieldArr }, navigation } = state
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+      <Switch>
+      {/* {...props} */}
+        <Route exact path='/' render={() => <Main />} />
+        <Route exact path='/timer' render={() => <Timer />} />
+      </Switch>
 
-export default App;
+      <Navigation navigation={navigation}
+       // props={navArr,
+        //   navClass,
+        //   navbarClass,
+        //   hideCircleClass,
+        //   circleClass,
+        //   navCheck,
+        //   navWall}
+        />
+    </div>
+  )
+}
